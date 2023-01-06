@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "build": "babel app.js -d dist",
+    "build": "app.js -d dist",
     "start": "nodemon app.js",
     "swagger-autogen": "node swagger.js"
   },
