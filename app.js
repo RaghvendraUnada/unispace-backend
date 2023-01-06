@@ -27,12 +27,12 @@ app.use(
 app.use("/add", NameRoute);
 
 mongoose.connect(
-  "mongodb+srv://user1:user1@cluster0.1vpdl.mongodb.net/BXI-development?retryWrites=true&w=majority"
+  "mongodb+srv://user1:user1@cluster0.1vpdl.mongodb.net/Unispace?retryWrites=true&w=majority"
 );
 mongoose.connection.once("Connected", () => {
   console.log("connected to db");
 });
-app.listen(5000, () => {
+app.listen(3030, () => {
   console.log("running on port 5000");
 });
 
