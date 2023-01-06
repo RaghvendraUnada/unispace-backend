@@ -2,6 +2,7 @@ const router = require("express").Router();
 const NameModal = require("./NameModal");
 
 router.post("/name", async (req, res) => {
+  console.log("name", req.name);
   try {
     const Data = await NameModal.create(req.body);
     res.send(Data);
