@@ -1,22 +1,34 @@
-var express = require("express");
-var path = require("path");
-var bodyParser = require("body-parser");
-var mongodb = require("mongodb");
+const express = require("express");
+const NameRoute = require("./nameroute");
 
-var dbConn = mongodb.MongoClient.connect("mongodb://localhost:27017");
+const cookieParser = require("cookie-parser");
 
-var app = express();
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.resolve(__dirname, "public")));
+const app = express();
+app.use(express.json());
+app.use(cookieParser());
+app.use(bodyParser.json());
 
-app.post("/name", function (req, res) {
-  console.log("req", req);
-  dbConn.then(function (db) {
-    delete req.body._id; // for safety reasons
-    db.collection("name").insertOne(req.body);
-  });
-  res.send("Data received:\n" + JSON.stringify(req.body));
+app.use(cors());
+app.use(
+  bodyParser.urlencoded({
+    extended: false,
+  })
+);
+
+app.use("/add", NameRoute);
+
+mongoose.connect(
+  "mongodb+srv://user1:user1@cluster0.1vpdl.mongodb.net/Unispace?retryWrites=true&w=majority"
+);
+mongoose.connection.once("Connected", () => {
+  console.log("connected to db");
 });
+// app.listen(5000, () => {
+//   console.log("running on port 5000");
+// });
 
 app.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0");

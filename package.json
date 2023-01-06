@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "build": "app.js -d dist",
-    "start": "nodemon app.js",
+    "build": "index.js -d dist",
+    "start": "nodemon index.js",
     "swagger-autogen": "node swagger.js"
   },
   "author": "",
