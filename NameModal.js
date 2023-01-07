@@ -9,6 +9,10 @@ const Name = new Schema(
       type: String,
       required: true,
     },
+    MobileNo: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true, strictQuery: true }
 );
